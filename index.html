@@ -15,32 +15,58 @@
 	</div>
 
 	<script type="text/javascript">
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var chart = new Chart(ctx, {
-			// The type of chart we want to create
+		let ctx = document.getElementById('myChart')
+		ds = [];
+		dt = [];
+
+		for (i = 0; i < 200; i++){
+			ds.push({x: i, y: Math.random()/2})
+			dt.push({x: i, y: Math.random()/2 + 1})
+		}
+
+		data = {
+			//labels: ['green', 'azul', 'mantena','another'],
+			datasets: [{
+				label: 'redline',
+				data: ds,
+				fill:false,
+				lineTension: 0,
+				pointRadius: 0,
+				borderWidth: 1,
+				borderColor: 'red'
+			},{
+				label: 'blueline',
+				data: dt,
+				fill:false,
+				lineTension: 0,
+				pointRadius: 0,
+				borderWidth: 1,
+				borderColor: 'blue'
+			}]
+		}
+
+		let lineChart = new Chart(ctx,{
 			type: 'line',
-			// The data for our dataset
-			data: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-				datasets: [{
-					label: 'My First dataset',
-					backgroundColor: 'rgb(255, 99, 132)',
-					borderColor: 'rgb(255, 99, 132)',
-					data: [0, 10, 5, 2, 20, 30, 45]
-				}]
-			},
-			// Configuration options go here
-			options: {
-				title: {
+			data: data,
+			options:{
+				title:{
 					display: true,
-					fontSize: 20,
-					fontStyle: 'bold',
-					text: 'Native Title'
+					text: ['Titulo', 'Subtitulo']
+				},
+				legend: {
+					position: 'right'
+				},
+				scales: {
+					xAxes: [{
+						type: 'linear',
+						position: 'bottom'
+					}]
 				}
-				//maintainAspectRatio: false
+
 			}
-		});
-		
+		})
+
 	</script>
+
 </body>
 </html>
